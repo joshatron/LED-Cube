@@ -39,7 +39,7 @@ int next[4][4][4] = {
   }
 };
 // Time when frame started
-int frameTime = 0;
+unsigned long frameTime = 0;
 // To keep track of current layer lit up
 int on = 0;
 
@@ -70,20 +70,50 @@ void cycleUpLayer() {
   digitalWrite(layers[on], LOW);
 }
 
-// Refills next frame;
+void makeRain() {
+  // Go bottom to better keep track of drops
+  for(int z = zSize; z >= 0; z--) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        // Move drops down
+        if(next[z][x][y] == HIGH) {
+          next[z][x][y] = LOW;
+          if(z < (zSize - 1)) {
+            next[z+1][x][y] = HIGH;
+          }
+        }
+        //Randomly create drops on top
+        else if(z == 0) {
+          // 15% chance of creating drop
+          if(random(100) < 15) {
+            next[z][x][y] = HIGH;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Refills next frame. Currently only applies 5 times a second
 void fillOutNextFrame() {
-  frameTime = millis();
+  if(millis() - frameTime > 250) {
+    makeRain();
+    frameTime = millis();
+  }
 }
 
 void loop() {
-  on = zSize - 1;
+  fillOutNextFrame();
+  digitalWrite(layers[zSize - 1],HIGH);
   for(int z = 0; z < zSize; z++) {
-    cycleDownLayer();
+    if(z != 0) {
+      digitalWrite(layers[z - 1], HIGH);
+    }
     for(int x = 0; x < xSize; x++) {
       for(int y = 0; y < ySize; y++) {
         digitalWrite(xy[x][y],next[z][x][y]);
       }
     }
-    cycleUpLayer();
+    digitalWrite(layers[z], LOW);
   }
 }
