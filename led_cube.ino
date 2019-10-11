@@ -40,8 +40,6 @@ int next[4][4][4] = {
 };
 // Time when frame started
 unsigned long frameTime = 0;
-// To keep track of current layer lit up
-int on = 0;
 
 void setup() {
   // Set up layers
@@ -57,17 +55,6 @@ void setup() {
       pinMode(xy[x][y], OUTPUT);
     }
   }
-}
-
-// Turns off current layer and sets up next one
-void cycleDownLayer() {
-  digitalWrite(layers[on], HIGH);
-  on = (on + 1) % zSize;
-}
-
-// Turns the next layer on, once xy is ready
-void cycleUpLayer() {
-  digitalWrite(layers[on], LOW);
 }
 
 void makeRain() {
@@ -94,7 +81,7 @@ void makeRain() {
   }
 }
 
-// Refills next frame. Currently only applies 5 times a second
+// Refills next frame. Currently only applies 4 times a second
 void fillOutNextFrame() {
   if(millis() - frameTime > 250) {
     makeRain();
