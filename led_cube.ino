@@ -3,13 +3,13 @@ int xSize = 4;
 int ySize = 4;
 int zSize = 4;
 // Layers from top to bottom
-int layers[4] = {46,47,48,49};
+int layers[4] = {47,46,49,48};
 // xy plane, with x first
 int xy[4][4] = {
-  {30,31,32,33},
-  {34,35,36,37},
-  {38,39,40,41},
-  {42,43,44,45}
+  {32,36,40,44},
+  {33,37,41,45},
+  {30,34,38,42},
+  {31,35,39,43}
 };
 // The next frame, to be filled up
 int next[4][4][4] = {
@@ -40,6 +40,7 @@ int next[4][4][4] = {
 };
 // Time when frame started
 unsigned long frameTime = 0;
+unsigned long frame = 0;
 
 void setup() {
   // Set up layers
@@ -72,7 +73,7 @@ void makeRain() {
         //Randomly create drops on top
         else if(z == 0) {
           // 15% chance of creating drop
-          if(random(100) < 15) {
+          if(random(100) < 25) {
             next[z][x][y] = HIGH;
           }
         }
@@ -81,10 +82,38 @@ void makeRain() {
   }
 }
 
+void fillAll() {
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        next[z][x][y] = HIGH;
+      }
+    }
+  }
+}
+
+void fillCycle() {
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        if(z == frame / 16 % 4 && x == frame / 4 % 4) {
+          next[z][x][y] = HIGH;
+        }
+        else {
+          next[z][x][y] = LOW;
+        }
+      }
+    }
+  }
+}
+
 // Refills next frame. Currently only applies 4 times a second
 void fillOutNextFrame() {
-  if(millis() - frameTime > 250) {
-    makeRain();
+  if(millis() - frameTime > 150) {
+    frame++;
+    //makeRain();
+    //fillAll();
+    //fillCycle();
     frameTime = millis();
   }
 }
