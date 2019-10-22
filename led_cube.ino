@@ -1,3 +1,5 @@
+#include <math.h>
+
 // Cube size
 int xSize = 4;
 int ySize = 4;
@@ -107,19 +109,80 @@ void cycleOne() {
   }
 }
 
-void bouncePlane() {
-  int pos = (frame % (zSize * 2 - 2)) - zSize + 1;
+void bouncePlane(int s, int plane) {
+  int pos = (frame % (s * 2 - 2)) - s + 1;
   //abs needs to be on different line because macro, not function
   pos = abs(pos);
 
   for(int z = 0; z < zSize; z++) {
     for(int x = 0; x < xSize; x++) {
       for(int y = 0; y < ySize; y++) {
-        if(z == pos) {
+        if((plane == 0 && z == pos) || (plane == 1 && x == pos) || (plane == 2 && y == pos)) {
           next[z][x][y] = HIGH;
         }
         else {
           next[z][x][y] = LOW;
+        }
+      }
+    }
+  }
+}
+
+void rotatePlane(int plane) {
+  int s = 2;
+  float angle = ((frame % (s * 2)) / (float)s) - 1;
+  int horz = (frame % (s * 4)) / (s * 2);
+  
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        int first;
+        int second;
+        switch(plane) {
+          case 0:
+            first = z;
+            second = x;
+            break;
+          case 1:
+            first = x;
+            second = z;
+            break;
+          case 2:
+            first = z;
+            second = y;
+            break;
+          case 3:
+            first = y;
+            second = z;
+            break;
+          case 4:
+            first = x;
+            second = y;
+            break;
+          case 5:
+            first = y;
+            second = x;
+        }
+        
+        if(horz == 0) {
+          float diff = (first - 1.5) - (angle * (second - 1.5));
+          diff = abs(diff);
+          if(diff < .5) {
+            next[z][x][y] = HIGH;
+          }
+          else {
+            next[z][x][y] = LOW;
+          }
+        }
+        else {
+          float diff = (second - 1.5) - ((angle * -1) * (first - 1.5));
+          diff = abs(diff);
+          if(diff < .5) {
+            next[z][x][y] = HIGH;
+          }
+          else {
+            next[z][x][y] = LOW;
+          }
         }
       }
     }
@@ -133,14 +196,15 @@ void fillOutNextFrame() {
     //makeRain();
     //fillAll();
     //cycleOne();
-    bouncePlane();
+    //bouncePlane(zSize, 0);
+    rotatePlane(5);
     frameTime = millis();
   }
 }
 
 void loop() {
-  fillOutNextFrame();
   digitalWrite(layers[zSize - 1],HIGH);
+  fillOutNextFrame();
   for(int z = 0; z < zSize; z++) {
     if(z != 0) {
       digitalWrite(layers[z - 1], HIGH);
