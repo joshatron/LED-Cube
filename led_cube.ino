@@ -92,11 +92,30 @@ void fillAll() {
   }
 }
 
-void fillCycle() {
+void cycleOne() {
   for(int z = 0; z < zSize; z++) {
     for(int x = 0; x < xSize; x++) {
       for(int y = 0; y < ySize; y++) {
-        if(z == frame / 16 % 4 && x == frame / 4 % 4) {
+        if(z == frame / 16 % 4 && x == frame / 4 % 4 && y == frame % 4) {
+          next[z][x][y] = HIGH;
+        }
+        else {
+          next[z][x][y] = LOW;
+        }
+      }
+    }
+  }
+}
+
+void bouncePlane() {
+  int pos = (frame % (zSize * 2 - 2)) - zSize + 1;
+  //abs needs to be on different line because macro, not function
+  pos = abs(pos);
+
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        if(z == pos) {
           next[z][x][y] = HIGH;
         }
         else {
@@ -109,11 +128,12 @@ void fillCycle() {
 
 // Refills next frame. Currently only applies 4 times a second
 void fillOutNextFrame() {
-  if(millis() - frameTime > 150) {
+  if(millis() - frameTime > 100) {
     frame++;
     //makeRain();
     //fillAll();
-    //fillCycle();
+    //cycleOne();
+    bouncePlane();
     frameTime = millis();
   }
 }
