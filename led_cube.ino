@@ -1,5 +1,3 @@
-#include <math.h>
-
 // Cube size
 int xSize = 4;
 int ySize = 4;
@@ -193,11 +191,23 @@ void rotatePlane(int plane) {
 void fillOutNextFrame() {
   if(millis() - frameTime > 100) {
     frame++;
-    //makeRain();
-    //fillAll();
-    //cycleOne();
-    //bouncePlane(zSize, 0);
-    rotatePlane(5);
+    switch((frame / 30) % 5) {
+      case 0:
+        makeRain();
+        break;
+      case 1:
+        bouncePlane(zSize, 0);
+        break;
+      case 2:
+        bouncePlane(xSize, 1);
+        break;
+      case 3:
+        rotatePlane(0);
+        break;
+      case 4:
+        rotatePlane(5);
+        break;
+    }
     frameTime = millis();
   }
 }
