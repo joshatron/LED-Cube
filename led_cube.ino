@@ -187,27 +187,65 @@ void rotatePlane(int plane) {
   }
 }
 
-// Refills next frame. Currently only applies 4 times a second
+void createWave(int s, int plane) {
+  int basePos = (frame % (s * 2 - 2)) - s + 1;
+  
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        int subtractor;
+        switch(plane) {
+          case 0:
+            subtractor = x;
+            break;
+          case 1:
+            subtractor = y;
+            break;
+          case 2:
+            subtractor = z;
+            break;
+        }
+        int pos = ((frame - subtractor) % (s * 2 - 2)) - s + 1;
+        pos = abs(pos);
+        if((plane == 0 && z == pos) || (plane == 1 && x == pos) || (plane == 2 && y == pos)) {
+          next[z][x][y] = HIGH;
+        }
+        else {
+          next[z][x][y] = LOW;
+        }
+      }
+    }
+  }
+}
+
+void demo() {
+  switch((frame / 30) % 6) {
+    case 0:
+      makeRain();
+      break;
+    case 1:
+      bouncePlane(zSize, 0);
+      break;
+    case 2:
+      bouncePlane(xSize, 1);
+      break;
+    case 3:
+      rotatePlane(0);
+      break;
+    case 4:
+      rotatePlane(5);
+      break;
+    case 5:
+      createWave(zSize, 0);
+      break;
+  }
+}
+
+// Refills next frame. Currently applies 10 times a second
 void fillOutNextFrame() {
   if(millis() - frameTime > 100) {
     frame++;
-    switch((frame / 30) % 5) {
-      case 0:
-        makeRain();
-        break;
-      case 1:
-        bouncePlane(zSize, 0);
-        break;
-      case 2:
-        bouncePlane(xSize, 1);
-        break;
-      case 3:
-        rotatePlane(0);
-        break;
-      case 4:
-        rotatePlane(5);
-        break;
-    }
+    demo();
     frameTime = millis();
   }
 }
