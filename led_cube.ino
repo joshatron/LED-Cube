@@ -38,6 +38,32 @@ int next[4][4][4] = {
     {HIGH,HIGH,HIGH,HIGH}
   }
 };
+int meta[4][4][4] = {
+  {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  },
+  {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  },
+  {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  },
+  {
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0},
+    {0,0,0,0}
+  },
+};
 // Time when frame started
 unsigned long frameTime = 0;
 unsigned long frame = 0;
@@ -54,6 +80,16 @@ void setup() {
   for(int x = 0; x < xSize; x++) {
     for(int y = 0; y < ySize; y++) {
       pinMode(xy[x][y], OUTPUT);
+    }
+  }
+}
+
+void resetMeta() {
+  for(int z = 0; z < zSize; z++) {
+    for(int x = 0; x < xSize; x++) {
+      for(int y = 0; y < ySize; y++) {
+        meta[z][x][y] = 0;
+      }
     }
   }
 }
