@@ -9,3 +9,6 @@ Eventually, I hope to allow the animations to be able to be controlled by a comp
 I have currently created the following animations:
 
  * Rain
+ * Bouncing plane
+ * Rotating plane
+ * Wave
