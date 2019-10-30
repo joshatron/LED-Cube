@@ -25,3 +25,19 @@ Tools:
  * Soldering fan (Safety first)
  * Solder sucker (Or whatever tool you prefer to unsolder mistakes)
  * Breadboard (Mainly used for testing LEDs)
+
+Procedure
+---------
+
+The first step is to create a template.
+I tried a 1" separation initially, but had to solder too close to the LEDs and was worried about burning them out.
+Instead, I found 7/8" to be a good distance.
+Because I plan to also make an 8x8x8, I made the template that size, but feel free to make it just 4x4.
+I chose a hole size that fit the LEDs snugly, 1/8" worked best for me.
+
+![What a pretty grid](pictures/grid_of_holes.jpg)
+
+Next is to test and shape all the LEDs.
+While not strictly required, it will be very annoying to replace any LEDs, so it is best to test each one.
+Once all are know to be good, the cathode and anode must be bent to create the structure of the cube.
+
