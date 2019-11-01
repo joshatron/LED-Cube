@@ -35,9 +35,23 @@ Instead, I found 7/8" to be a good distance.
 Because I plan to also make an 8x8x8, I made the template that size, but feel free to make it just 4x4.
 I chose a hole size that fit the LEDs snugly, 1/8" worked best for me.
 
-![What a pretty grid](pictures/grid_of_holes.jpg)
+![Grid of holes](pictures/grid_of_holes.jpg)
 
 Next is to test and shape all the LEDs.
 While not strictly required, it will be very annoying to replace any LEDs, so it is best to test each one.
-Once all are know to be good, the cathode and anode must be bent to create the structure of the cube.
+Once all are known to be good, the cathode and anode must be bent to create the structure of the cube.
 
+The way to bend it is to orient the led to be upside down, the anode on the left, the cathode on the right.
+Bend the cathode forward till it is at a right angle.
+1/4th of them are done.
+They will make the bottom layer.
+For the remaining layers, bend the anode left a little, and then use some pliars to bend the last tip right at a right angle.
+This way the LEDs can be stacked directly on top of each other.
+
+![Starting LED](pictures/original_led.jpg)
+
+![Bending the cathode](pictures/bent_cathode.jpg)
+
+![Tilt out the anode](pictures/tilted_anode.jpg)
+
+![Last bend of anode](pictures/tilted_and_bent_anode.jpg)
