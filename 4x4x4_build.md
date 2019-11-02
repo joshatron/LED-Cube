@@ -59,7 +59,7 @@ This way the LEDs can be stacked directly on top of each other.
 The next step is to create the layers.
 First, place one row as shown below and solder them together.
 
-![First row](picures/soldered_first_row.jpg)
+![First row](pictures/soldered_first_row.jpg)
 
 Next, add each column, one at a time.
 
