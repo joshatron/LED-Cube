@@ -55,3 +55,25 @@ This way the LEDs can be stacked directly on top of each other.
 ![Tilt out the anode](pictures/tilted_anode.jpg)
 
 ![Last bend of anode](pictures/tilted_and_bent_anode.jpg)
+
+The next step is to create the layers.
+First, place one row as shown below and solder them together.
+
+![First row](picures/soldered_first_row.jpg)
+
+Next, add each column, one at a time.
+
+![First column](pictures/soldered_first_row_and_column.jpg)
+
+Finally, use some solid core wire to add some structure to the other end of the columns.
+I was able to make the wire straight by holding each end with some pliars and pulling.
+The wire lengthens slightly, and in the process straightens out better than you could do manually.
+
+![First layer](pictures/soldered_full_layer.jpg)
+
+Repeat this process 3 more times to make all the layers.
+Make sure all the LEDs where you only bent the cathode are in the same layer.
+After each layer was completed, check all the LEDs again to make sure they are all good.
+It is easier to fix it now than in it's final configuration.
+To test, attach a ground wire to the cathode sticking out, or any horizontal wire.
+Then touch your positive wire against each vertical post.
