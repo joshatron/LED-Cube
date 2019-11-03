@@ -77,3 +77,53 @@ After each layer was completed, check all the LEDs again to make sure they are a
 It is easier to fix it now than in it's final configuration.
 To test, attach a ground wire to the cathode sticking out, or any horizontal wire.
 Then touch your positive wire against each vertical post.
+
+To finish the cube portion, each layer needs to be soldered to each other.
+Start by putting the top layer in the template.
+Then roughly position it using helping hands.
+
+Make one corner good height-wise and solder it.
+Then do the remaining corners.
+
+Carefully check that the layers are lined up in every way.
+This may require some resoldering, along with tilting wires.
+
+Solder the remaining anodes, making sure that the two layers stay lined up.
+
+Finally, test all the LEDs in both rows again like you did for each layer.
+This will ensure all the anodes have strong connections through layers and nothing is burned out.
+
+Repeat those steps twice more, making sure the straight anode layer is the bottom layer.
+
+![Finished soldering layers](pictures/soldered_layers_together.jpg)
+
+You will need a connection from each cathode layer to the bottom of the cube.
+Straighten some more solid core wire and make a small right angle at the end.
+Solder one of these L pieces to each layer.
+I attached them to the existing solid core wire, but anywhere will do.
+
+The cube is now ready to be tested.
+I used male to female jumper wires to connect all the anodes and cathodes to a breadboard.
+Then I attached resistors to all the anodes and connected everything to the arduino.
+
+The first test was to make sure everything lit up.
+I programmed all the pins for the anodes to write HIGH and all the cathodes to write LOW.
+
+![All LEDs lit up](pictures/cube_first_hooked_up_all_lit.jpg)
+
+Then, when I made sure everything was lighting up, I tried making the cube display a pattern with multiplexing.
+Multiplexing entails lighting one layer up at a time, and rotating through them fast enough that the eye sees them all lit at once.
+The basic loop is:
+
+    Set all cathodes to HIGH
+    Turn on anodes to first layer that will be lit
+    Set first layer cathode to LOW
+    Set first layer cathode to HIGH
+    Turn on anodes to second layer that will be lit
+    Set second layer cathode to LOW
+    Repeat for all layers
+    Repeat this loop continuously
+
+With this technique, you can make it appear that just the outline is lit, which you couldn't otherwise display.
+
+![Multiplexing outline](picures/cube_first_hooked_up_multiplexing.jpg)
