@@ -115,14 +115,13 @@ Then, when I made sure everything was lighting up, I tried making the cube displ
 Multiplexing entails lighting one layer up at a time, and rotating through them fast enough that the eye sees them all lit at once.
 The basic loop is:
 
-    Set all cathodes to HIGH
-    Turn on anodes to first layer that will be lit
-    Set first layer cathode to LOW
-    Set first layer cathode to HIGH
-    Turn on anodes to second layer that will be lit
-    Set second layer cathode to LOW
-    Repeat for all layers
-    Repeat this loop continuously
+    Forever
+        For each layer
+            Set all cathodes to HIGH
+            Set anodes up for the layer
+            Set layer cathode to LOW
+        done
+    done
 
 With this technique, you can make it appear that just the outline is lit, which you couldn't otherwise display.
 
