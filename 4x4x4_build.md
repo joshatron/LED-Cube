@@ -126,4 +126,4 @@ The basic loop is:
 
 With this technique, you can make it appear that just the outline is lit, which you couldn't otherwise display.
 
-![Multiplexing outline](picures/cube_first_hooked_up_multiplexing.jpg)
+![Multiplexing outline](pictures/cube_first_hooked_up_multiplexing.jpg)
