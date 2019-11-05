@@ -126,3 +126,13 @@ The basic loop is:
 With this technique, you can make it appear that just the outline is lit, which you couldn't otherwise display.
 
 ![Multiplexing outline](pictures/cube_first_hooked_up_multiplexing.jpg)
+
+Now that the cube is demonstrated to be fully working, it is time to set it up more permanently.
+Fitting all the anodes from the LEDs into the holes of the protoboard is a difficult and frustrating task.
+The best way I figured to do it was to get the back row through, pull it about an 1/8th inch through, and solder the two corners.
+From there, I was able to fit each next row through will less fuss.
+
+When all the holes are through, solder the 4 corners first, then verify everything is level, resoldering as necessary.
+Finally, solder the rest of the pins and clip the extra wire from the bottom of the board.
+
+![Cube on protoboard](pictures/cube_soldered_to_board.jpg)
