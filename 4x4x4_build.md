@@ -136,3 +136,49 @@ When all the holes are through, solder the 4 corners first, then verify everythi
 Finally, solder the rest of the pins and clip the extra wire from the bottom of the board.
 
 ![Cube on protoboard](pictures/cube_soldered_to_board.jpg)
+
+The next step is recreating the circuit made originally on the breadboard.
+First, solder all 16 resistors to the board in a row.
+
+![Resistors soldered](pictures/resistors_soldered_to_board.jpg)
+
+Then start hooking up all the anodes to them.
+You do not need to follow a specific order, but it will be cleaner if you do.
+
+![First row of jumpers](pictures/first_row_soldered_to_resistors.jpg)
+
+![All soldered to resistors](pictures/all_rows_soldered_to_resistors.jpg)
+
+Finally, solder the 4 cathode connections next to the resitors.
+
+![Cathodes soldered next to resistors](pictures/cathodes_soldered_to_board.jpg)
+
+You now have a nice row of connections ready to hook up to your arduino.
+There are several ways you can do this, but I chose to make a 2x10 pin header connection.
+This allows me to remove the arduino from the cube with ease.
+
+![Header for arduino mega](pictures/headers.jpg)
+
+![Jumpers connected to resistors](pictures/jumpers_soldered_to_resistors.jpg)
+
+![Jumpers connected to header](pictures/jumpers_soldered_to_headers.jpg)
+
+Now it is a simple matter to plug in the arduino.
+You should have enough pins to control this with an uno, but you cannot make a compact header like this.
+I would recommend making your own arduino shield for connecting.
+
+All that is left is to program the arduino and you are done.
+
+Troubleshooting
+---------------
+
+Right when I thought I was done, I noticed some wierd behaviors.
+For some of the columns, there seemed to be two LEDs tied to each other.
+When only one was on, it wouldn't light, but when both were on they worked fine.
+
+After too much time investigating, I discovered that I had made a solder bridge between two anodes.
+When one LED was set HIGH and the other LOW, a short would be made at that point and the LED wouldn't light.
+When both were HIGH though they went to the low of the cathode, working fine.
+
+If you notice any problem like this, especially if the cube was working when manually hooked up, look for these shorts.
+That will be your most likely culprit.
